@@ -1,0 +1,194 @@
+#!/Utils/bin/zsh
+# Maarten M. Fokkinga, January 2001
+#
+# Produces on standard output the/some people belonging to the top 10K most
+# cited DUTCH computer scientists, according to http://citeseer.nj.nec.com.
+# The completeness fully depends on the list of Dutch cs people, made below.
+
+#------ setting some parameters ------------------------------
+
+# Where to get the data:
+TOP10Ksite=http://citeseer.nj.nec.com/allcited.html
+#DUTCH_CS_PEOPLE= # Enumerated below
+
+# Where to find lynx and vim and less
+UTILSDIR=/Utils/bin
+
+# temporary files:
+TOP10K=/tmp/allcited.txt
+DUTCH_CS_LIST=/tmp/dutch_cs_list.txt
+
+#------ doing the work ---------------------------------------
+
+# Outcomment following when $DUTCH_CS_LIST is explicitly listed 3 lines below!
+#echo Downloading Dutch computer scientists...
+#$UTILSDIR/lynx -dump $DUTCH_CS_PEOPLE > $DUTCH_CS_LIST
+
+# Outcomment following if $DUTCH_CS_LIST is downloaded, 3 lines above.
+# Making a list of some Dutch cs people
+# (source: "http://www.cs.kun.nl/~fvaan/PAPERS/citatiescorrecties.txt")
+# (With a few corrections given by Jan Friso Groote.)
+cat > $DUTCH_CS_LIST <<END
+E. Aarts
+H. Akkermans
+M. Aksit
+P. America
+P. Apers
+K. Apt
+O. Axelsson
+J. Baeten
+H. Bal
+H. Barendregt
+J. Bergstra
+M. Bezem
+J. Biemond
+H. Bodlaender
+R. Bol
+J. Breuker
+E. Brinksma
+A. Brouwer
+H. Buhrman
+D. Bulterman
+R. Cramer
+W. Daelemans
+D. Dams
+M. de Berg
+F. de Boer
+N. de Bruijn
+O. de Moor
+W. de Roever
+E. Deprettere
+P. Dewilde
+E. Dijkstra
+A. Eiben
+V. Eijkhout
+J. Engelfriet
+L. Feng
+D. Fensel
+M. Fokkinga
+J. Groote
+R. Gerth
+H. Geuvers
+J. Groenendijk
+N. Habermann
+L. Hardman
+P. Hartel
+J. Heering
+H. Hermanns
+K. Hofmann
+G. Holzmann
+J. Hooman
+B. Jacobs
+C. Jacobs
+J. Jansen
+J. Jeuring
+M. Jeusfeld
+F. Kaashoek
+H. Kamp
+J. Karel Lenstra
+J. Katoen
+M. Kersten
+P. Klint
+T. Kloks
+J. Klop
+J. Koenderink
+J. Kok
+J. Korst
+R. Koymans
+R. Kuiper
+K. Langedoen
+R. Langerak
+A. Lenstra
+H. Lenstra
+S. Mauw
+L. Meertens
+E. Meijer
+J. Meijer
+A. Middeldorp
+I. Moerdijk
+S. Mullender
+H. Nijmeijer
+G. Oldser
+M. Overmars
+M. Papazoglou
+J. Paredaens
+R. Plasmeijer
+A. Ponse
+H. Prakken
+A. Rinnooy Kan
+C. Roos
+G. Rozenberg
+J. Rutten
+R. Scha
+D. Schaeffer
+C. Scholten
+G. Schreiber
+L. Schrijver
+A. Siebes
+J. Simons
+G. Sleijpen
+S. Smetsers
+P. Sonneveld
+M. Stokhof
+G. Swart
+F. Takens
+A. Tanenbaum
+G. Tel
+T. Terlaky
+J. Treur
+A. Troelstra
+J. Tromp
+T. Tsantilas
+F. Vaandrager
+J. van Benthem
+K. van Berkel
+D. van Dalen
+A. van der Schaft
+H. van der Vorst
+A. van Doorn
+M. van Eekelen
+P. van Emde Boas
+M. van Emden
+R. van Glabbeek
+F. van Harmelen
+M. van Kreveld  
+J. van Leeuwen
+J. van Lint
+G. van Noord
+V. van Oostrom
+F. van Raamsdonk
+R. van Renesse
+K. van Rijsbergen
+G. van Rossum
+M. van Sinderen
+H. van Staveren
+J. van Wijk
+S. Vassiliadis
+Y. Venema
+C. Verhoef
+J. Verwer
+M. Viergever
+P. Vitanyi
+P. Walters
+P. Weijland
+P. Wesseling
+B. Wielinga
+R. Wieringa
+H. Wijshof
+J. Willems
+H. Zantema
+END
+
+echo Downloading top 10K most cited computer scientists...
+$UTILSDIR/lynx -dump $TOP10Ksite > $TOP10K
+head -10 $TOP10K
+echo ...
+echo
+
+echo Searching top10K most cited list for Dutch persons...
+echo "****** For more press SPACE key; to QUIT press the q key ********"
+echo "<NL_rank> <WORLD_RANK> <PERSON>: <CITATIONS>"
+/usr/xpg4/bin/grep -w -f $DUTCH_CS_LIST $TOP10K | $UTILSDIR/less -N
+
+rm -f $TOP10K $DUTCH_CS_LIST
+

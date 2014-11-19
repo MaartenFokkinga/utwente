@@ -1,0 +1,29 @@
+<title>Introduction to Category Theory</title>
+
+<h1>
+A Gentle Introduction to Category Theory - the calculational approach
+</h1>
+<a href="index.html">Maarten M Fokkinga</a>
+<hr>
+In these notes we present the important notions from category theory.
+The intention is to provide a fairly good skill in manipulating with those concepts formally.
+What you probably will not acquire from these notes is the ability to recognise the concepts in your daily work when that differs from algorithmics, since we give only a few examples and those are taken from algorithmics.
+For such an ability you need to work through many, very many examples, in diverse fields of applications.
+<p>
+This text differs from most other introductions to category theory in the calculational style of the proofs (especially in Chapter~\ref{ch:constructions} and Appendix~\ref{moreonadjointness}), the restriction to applications within algorithmics, and the omission of many additional concepts and facts that I consider not helpful in a first introduction to category theory.
+<hr>
+Full paper (postscript version): <a href="ftp://ftp.cs.utwente.nl/pub/doc/Parlevink/fokkinga/mmf92b.ps.Z">here</a> (80 pages).
+<hr>
+<b>Bibtex data</b><pre>
+@incollection{mmf92b
+,author = "Fokkinga, M.M."
+,booktitle = "Lecture Notes of the {STOP} 1992 {S}ummerschool on
+{C}onstructive {A}lgorithmics"
+,month = sep
+,pages = "1--72 of Part 1"
+,publisher = "University of Utrecht"
+,title = "A Gentle Introduction to Category Theory --- the
+calculational approach"
+,year = "1992"
+}
+</pre>

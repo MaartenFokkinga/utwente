@@ -1,0 +1,125 @@
+#!/Utils/bin/zsh
+# Maarten M. Fokkinga, January 2001
+#
+# Produces on standard output the INF'ers belonging to the top 10K most cited
+# computer scientists, according to http://citeseer.ist.psu.edu.
+# Please note these two ad-hoc corrections that affects the outcome:
+
+DELETE=( 'Bui' 'Zhang' 'Liu' 'J. Martinez' 'J. van den Berg' 'Y. Chen' 'J. Wu' 'Y. Guo' 'L. Feng' 'J. Hu' 'H. Chen' 'S. Even' 'A. Field' 'V. Jones' 'M. Le' 'D. Muller' 'A. Kleppe')
+THIS_PART_ONLY=( 'Brinksma' 'van Rein' 'Argenio' )
+
+# The DELETIONS are not counted because of voluminous writing name-sakes,
+# or because of confusion with "name-sake" 'M. Le Borgne'.
+# When inititals etc are problematic, we search for THIS PART of the name ONLY.
+
+#------ setting some parameters ------------------------------
+
+# Where to get the data:
+TOP10Ksite=http://citeseer.ist.psu.edu/allcited.html
+INFPHONEBOOK=http://wwwcs.cs.utwente.nl/restr_inf/telefoonnummers/html/All.html
+
+# What groups to take (only CS groups, no Math or EL groups)
+INFGROUPS='(ASNA|CADTES|DACS|DB|DIES|FMT|HMI|IS|SE)'
+
+# Wher to find lynx and vim
+#UTILSDIR=/Utils/bin  # solaris
+UTILSDIR=/usr/bin     #linux
+
+# temporary files:
+TOP10K=/tmp/allcited.txt
+INFLIST=/tmp/inflist.txt
+PHONEBOOK2LIST=/tmp/phonebook2list.vim
+
+#------ doing the work ---------------------------------------
+
+#echo Building a vim script that transforms the phone book into a list...
+
+#MMF: cat > $PHONEBOOK2LIST <<END
+#MMF: :set noic
+#MMF: :g/^[^,]*\$/d
+#MMF: :1,\$s/^ *//
+#MMF: :1,\$s/^\(.\{-}\)\(\<[A-Z]\>\.\)/\2 \1/
+#MMF: :1,\$s/^\(.\.\)\( .*, [\. a-zA-Z]*\.\)\(\( \+[a-z]\+\)*\)/\1\3\2/
+#MMF: :1,\$s/,.*\$//
+#MMF: :1,\$s/ \+/ /g
+#MMF: END
+#MMF: 
+#MMF: #-- Uitleg van bovenstaande vi-commando's:
+#MMF: #   :g/^[^,]*\$/d   
+#MMF: #     -- haalt alle niet-personen weg (personen hebben een , achter de naam)
+#MMF: #   :1,\$s/^ *//     
+#MMF: #     -- haalt alle begin-spatie's weg
+#MMF: #   :1,\$s/^\(.\{-}\)\(\<[A-Z]\>\.\)/\2 \1/
+#MMF: #     -- zet eerste voorletter (single hoofdletter gevolgd door punt) vooraan
+#MMF: #   :1,\$s/^\(.\.\)\( .*, [\. a-zA-Z]*\.\)\(\( \+[a-z]\+\)*\)/\1\3\2/
+#MMF: #     -- zet tussenvoegsels (na een " xxx." iteratie) vooraan na de initiaal
+#MMF: #   :1,\$s/,.*\$//
+#MMF: #     -- haalt alles na de komma achter de naam weg
+#MMF: #   :1,\$s/ \+/ /g
+#MMF: #     -- Maakt dubbele spaties enkelvoudig
+#MMF: #
+#MMF: # We nemen geen moeite secretaresses en dergelijke te verwijderen.
+#MMF: 
+#MMF: # Deleting INF persons that have voluminous writing name-sakes:
+#MMF: for name in $DELETE ; do
+#MMF: ed $PHONEBOOK2LIST >/dev/null <<END
+#MMF: \$a
+#MMF: :g/$name/d
+#MMF: .
+#MMF: w
+#MMF: q
+#MMF: END
+#MMF: ;
+#MMF: done
+#MMF: 
+#MMF: # Some people have problematic (wrong!) initials or middle names:
+#MMF: for name in $THIS_PART_ONLY ; do
+#MMF: ed $PHONEBOOK2LIST >/dev/null <<END
+#MMF: \$a
+#MMF: :1,\$s/.*$name/$name/
+#MMF: .
+#MMF: w
+#MMF: q
+#MMF: END
+#MMF: ;
+#MMF: done
+#MMF: 
+#MMF: # Adding a last line to vim script for writing the file and quiting:
+#MMF: ed $PHONEBOOK2LIST >/dev/null <<END
+#MMF: \$a
+#MMF: :wq
+#MMF: .
+#MMF: w
+#MMF: q
+#MMF: END
+#MMF: # This completes the formation of the vim script that edits the phone book.
+
+echo Downloading top 10K most cited computer scientists...
+$UTILSDIR/lynx -dump $TOP10Ksite > $TOP10K
+head -10 $TOP10K
+echo ...
+echo
+
+echo Downloading INF phone book...
+#MMF: $UTILSDIR/lynx -dump $INFPHONEBOOK > $INFLIST.1
+cp $INFLIST.1 $INFLIST.ori
+
+echo Transforming INF phone book into INF person list...
+#MMF: /usr/bin/grep -E -w "$INFGROUPS" $INFLIST.1 > $INFLIST
+$UTILSDIR/vim -s $PHONEBOOK2LIST $INFLIST > /dev/null 2>&1
+
+echo Searching top10K most cited list for INF persons...
+echo
+echo Not searched because of voluminous writing name-sakes:
+for name in $DELETE ; do
+   echo -n $name,\ 
+done
+echo
+echo
+
+echo "<RANK> <PERSON>: <CITATIONS>"
+/usr/bin/grep -w -f $INFLIST $TOP10K 
+
+#MMF: rm -f $TOP10K
+#rm -f $INFLIST $TOP10K $PHONEBOOK2LIST
+

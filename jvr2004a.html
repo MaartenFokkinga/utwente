@@ -1,0 +1,7 @@
+Analytical query processing over complex objects often suffers from
+disappointing performance due to excessive use of nested-loop (element at a
+time) evaluation. Storing the data in a flattened form enables collection based
+processing (set at a time), gaining performance at the cost of having to write
+more complicated queries. This report proposes Dodo, an approach to automatic
+translation of queries from the complex objects domain into set-at-a-time
+operations against data stored in a flattened form.

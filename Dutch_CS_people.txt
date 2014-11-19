@@ -1,0 +1,151 @@
+Some Dutch computer scientists, Jan 2001; source http://www.cs.kun.nl/~fvaan/PAPERS/citatiescorrecties.txt
+E. Aarts
+H. Akkermans
+M. Aksit
+P. America
+P. Apers
+K. Apt
+O. Axelsson
+T. Back
+J. Baeten
+H. Bal
+H. Barendregt
+J. Bergstra
+M. Bezem
+J. Biemond
+H. Bodlaender
+R. Bol
+J. Breuker
+E. Brinksma
+A. Brouwer
+H. Buhrman
+D. Bulterman
+R. Cramer
+W. Daelemans
+D. Dams
+M. de Berg
+F. de Boer
+N. de Bruijn
+O. de Moor
+W. de Roever
+E. Deprettere
+P. Dewilde
+E. Dijkstra
+A. Eiben
+V. Eijkhout
+J. Engelfriet
+L. Feng
+D. Fensel
+M. Fokkinga
+J. Friso Groote
+R. Gerth
+H. Geuvers
+J. Groenendijk
+N. Habermann
+L. Hardman
+P. Hartel
+J. Heering
+H. Hermanns
+K. Hofmann
+G. Holzmann
+J. Hooman
+B. Jacobs
+C. Jacobs
+J. Jansen
+J. Jeuring
+M. Jeusfeld
+F. Kaashoek
+H. Kamp
+J. Karel Lenstra
+J. Katoen
+M. Kersten
+P. Klint
+T. Kloks
+J. Klop
+J. Koenderink
+J. Kok
+J. Korst
+R. Koymans
+R. Kuiper
+K. Langedoen
+R. Langerak
+A. Lenstra
+H. Lenstra
+S. Mauw
+L. Meertens
+E. Meijer
+J. Meyer
+A. Middeldorp
+I. Moerdijk
+S. Mullender
+H. Nijmeijer
+G. Oldser
+M. Overmars
+M. Papazoglou
+J. Paredaens
+R. Plasmeijer
+A. Ponse
+H. Prakken
+A. Rinnooy Kan
+C. Roos
+G. Rozenberg
+J. Rutten
+R. Scha
+D. Schaeffer
+C. Scholten
+G. Schreiber
+L. Schrijver
+B. Selman
+A. Siebes
+J. Simons
+G. Sleijpen
+S. Smetsers
+P. Sonneveld
+M. Stokhof
+G. Swart
+F. Takens
+A. Tanenbaum
+G. Tel
+T. Terlaky
+J. Treur
+A. Troelstra
+J. Tromp
+T. Tsantilas
+F. Vaandrager
+J. van Benthem
+K. van Berkel
+D. van Dalen
+A. van der Schaft
+H. van der Vorst
+A. van Doorn
+M. van Eekelen
+P. van Emde Boas
+M. van Emden
+R. van Glabbeek
+F. van Harmelen
+M. van Kreveld  
+J. van Leeuwen
+J. van Lint
+G. van Noord
+V. van Oostrom
+F. van Raamsdonk
+R. van Renesse
+K. van Rijsbergen
+G. van Rossum
+M. van Sinderen
+H. van Staveren
+J. van Wijk
+S. Vassiliadis
+Y. Venema
+C. Verhoef
+J. Verwer
+M. Viergever
+P. Vitanyi
+P. Walters
+P. Weijland
+P. Wesseling
+B. Wielinga
+R. Wieringa
+H. Wijshof
+J. Willems
+H. Zantema
